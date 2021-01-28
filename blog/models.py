@@ -1,13 +1,14 @@
 from django.db import models
 
 # Create your models here.
-from django.db import models
+import os
 import uuid
 from stdimage.models import StdImageField
 from django.contrib.auth import get_user_model
 from django.conf import settings
 from django.core.exceptions import ValidationError
-import os
+from django.template.defaultfilters import slugify
+from django.db.models import signals
 
 # gerar nome unico para cada arquivo enviado
 
@@ -81,6 +82,10 @@ class Post(Base):
     audio_post = models.FileField('Áudio do Post', blank=True,
                                   upload_to=get_file_path,
                                   validators=[validate_file_extension])
+    slug = models.SlugField('Slug', max_length=100, blank=True, editable=False)
+    facebook_link = models.URLField(blank=True, editable=False)
+    twitter_link = models.URLField(blank=True, editable=False)
+    linkedin_link = models.URLField(blank=True, editable=False)
 
     class Meta:
         verbose_name = 'Post'
@@ -88,3 +93,14 @@ class Post(Base):
 
     def __str__(self):
         return self.titulo
+
+
+def post_pre_save(signal, instance, sender, **kwargs):
+    instance.slug = slugify(instance.titulo)
+    # editar para o instance.slug para o link da postagem
+    instance.facebook_link = f'https://www.facebook.com/sharer.php?u={instance.slug}'
+    instance.twitter_link = f'https://twitter.com/intent/tweet?url={instance.slug}&text={instance.titulo}'
+    instance.linkedin_link = f'https://www.linkedin.com/shareArticle?mini=true&url={instance.slug}&title=&summary={instance.titulo}&source='
+
+
+signals.pre_save.connect(post_pre_save, sender=Post)

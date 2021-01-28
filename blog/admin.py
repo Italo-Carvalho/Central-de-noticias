@@ -4,7 +4,7 @@ from .models import Post, Categorias, Tags
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('autor', 'titulo', 'ativo', 'modificado')
+    list_display = ('autor', 'titulo', 'ativo', 'modificado', 'slug')
 
 
 @admin.register(Categorias)

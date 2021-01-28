@@ -7,7 +7,7 @@ from stdimage.models import StdImageField
 from django.contrib.auth import get_user_model
 from django.conf import settings
 from django.core.exceptions import ValidationError
-
+import os
 
 #gerar nome unico para cada arquivo enviado
 def get_file_path(_instace, filename):
@@ -15,9 +15,13 @@ def get_file_path(_instace, filename):
     filename = f'{uuid.uuid4()}.{ext}'
     return filename
 
+def validate_file_extension(value):
 
-
-
+    from django.core.exceptions import ValidationError
+    ext = os.path.splitext(value.name)[1]  # [0] returns path+filename
+    valid_extensions = ['.mp3', '.ogg', '.wav']
+    if not ext.lower() in valid_extensions:
+        raise ValidationError('Arquivos de áudio suportados (.MP3, .OGG, .WAV)')
 
 class Base(models.Model):
     criados = models.DateField('Criação', auto_now_add=True)
@@ -44,7 +48,8 @@ class Post(Base):
             'crop': True
         }})
     audio_post = models.FileField('Áudio do Post',blank=True,
-                                  upload_to=get_file_path)
+                                  upload_to=get_file_path,
+                                  validators=[validate_file_extension])
 
     class Meta:
         verbose_name = 'Post'

@@ -1,16 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
+{% extends 'base.html' %}
+{% block content %}
+<h4>-INDEX-</h4>
 {% for post in posts %}
-<h1>{{post.titulo}}</h1>
+{% if post.ativo == True %}
+<p>--autor--</p>
+<p>{{post.autor}}</p>
+<p>--titulo--</p>
+<a href="{% url 'detail' post.slug %}">{{post.titulo}}</a>
+<h4>{{post.titulo}}</h4>
+<p>--sub-titulo--</p>
+<h1>{{post.sub_titulo}}</h1>
+<p>--texto--</p>
+<h1>{{post.texto}}</h1>
+<p>--categoria--</p>
+<h1>{{post.categoria}}</h1>
+<p>--tags--</p>
+{% for tag in post.tags.all %}
+<p>{{tag}}</p>
 {% endfor %}
-<body>
+<p>--imagem--</p>
+<img src="{{post.post_image.thumb.url}}" alt="{{post.titulo}}">
+{% endif %}
+<p>--------------------------------------------------------</p>
+{% endfor %}
+{% endblock content %}
 
-</body>
 
-</html>
+
+

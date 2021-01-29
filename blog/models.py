@@ -21,7 +21,7 @@ def get_file_path(_instace, filename):
     return filename
 
 
-def validate_file_extension(value):
+def validate_audio_extension(value):
 
     from django.core.exceptions import ValidationError
     ext = os.path.splitext(value.name)[1]  # [0] returns path+filename
@@ -68,7 +68,7 @@ class Post(Base):
                               on_delete=models.CASCADE)
     categoria = models.ForeignKey(
         Categorias, verbose_name='Categoria', on_delete=models.CASCADE)
-    tags = models.ManyToManyField(Tags)
+    tags = models.ManyToManyField(Tags, blank=True)
     titulo = models.CharField('Titulo', max_length=100)
     sub_titulo = models.CharField('Subtítulo', blank=True, max_length=100)
     texto = models.TextField()
@@ -83,7 +83,7 @@ class Post(Base):
         }})
     audio_post = models.FileField('Áudio do Post', blank=True,
                                   upload_to=get_file_path,
-                                  validators=[validate_file_extension])
+                                  validators=[validate_audio_extension])
     slug = models.SlugField('Slug', max_length=100, blank=True, editable=False)
     facebook_link = models.URLField(blank=True, editable=False)
     twitter_link = models.URLField(blank=True, editable=False)

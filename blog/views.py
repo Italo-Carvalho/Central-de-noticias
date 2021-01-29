@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from .models import Post
-from django.views.generic import TemplateView
+from .models import Post, Tags
+from django.views.generic import TemplateView, DetailView
 
 
 class IndexView(TemplateView):
@@ -10,3 +10,8 @@ class IndexView(TemplateView):
         context = super(IndexView, self).get_context_data(**kwargs)
         context['posts'] = Post.objects.order_by('criados').all
         return context
+
+
+class DetailView(DetailView):
+    model = Post
+    template_name = 'detail.html'

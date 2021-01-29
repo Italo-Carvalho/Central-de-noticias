@@ -8,7 +8,8 @@ from django.contrib.auth import get_user_model
 from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.template.defaultfilters import slugify
-from django.db.models import signals
+from django.db.models.signals import pre_save
+from django.dispatch import receiver
 
 # gerar nome unico para cada arquivo enviado
 
@@ -95,12 +96,10 @@ class Post(Base):
         return self.titulo
 
 
-def post_pre_save(signal, instance, sender, **kwargs):
+@receiver(pre_save, sender=Post)
+def pre_save_post(signal, instance, sender, **kwargs):
     instance.slug = slugify(instance.titulo)
     # editar para o instance.slug para o link da postagem
     instance.facebook_link = f'https://www.facebook.com/sharer.php?u={instance.slug}'
     instance.twitter_link = f'https://twitter.com/intent/tweet?url={instance.slug}&text={instance.titulo}'
     instance.linkedin_link = f'https://www.linkedin.com/shareArticle?mini=true&url={instance.slug}&title=&summary={instance.titulo}&source='
-
-
-signals.pre_save.connect(post_pre_save, sender=Post)

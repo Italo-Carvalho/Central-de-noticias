@@ -1,17 +1,17 @@
 from django.shortcuts import render
 from .models import Post, Tags
-from django.views.generic import TemplateView, DetailView
+from django.views.generic import ListView, DetailView
 
 
-class IndexView(TemplateView):
+class IndexView(ListView):
+    model = Post
     template_name = 'index.html'
-
-    def get_context_data(self, **kwargs):
-        context = super(IndexView, self).get_context_data(**kwargs)
-        context['posts'] = Post.objects.order_by('criados').all
-        return context
+    context_object_name = 'posts'
+    paginate_by = 1
+    queryset = Post.objects.all()
 
 
-class DetailView(DetailView):
+class PostDetailView(DetailView):
     model = Post
     template_name = 'detail.html'
+    context_object_name = 'post'

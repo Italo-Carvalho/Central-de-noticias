@@ -18,6 +18,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin', 'django.contrib.auth',
     'django.contrib.contenttypes', 'django.contrib.sessions',
     'django.contrib.messages', 'django.contrib.staticfiles',
@@ -27,6 +28,7 @@ INSTALLED_APPS = [
     'crispy_forms',
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -113,3 +115,18 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 AUTH_USER_MODEL = 'usuarios.CustomUsuario'
+
+
+JAZZMIN_SETTINGS = {
+    "site_logo": "logo.png",
+    "user_avatar": False,
+    "site_title": "Blog Admin",
+    "site_header": "Blog",
+    "welcome_sign": "Bem vindo ao Painel do Blog",
+    "copyright": "SeuMVP",
+    "show_ui_builder": False,
+}
+JAZZMIN_UI_TWEAKS = {
+    "theme": "simplex",
+    "navbar": "navbar-gray-dark navbar-dark",
+}

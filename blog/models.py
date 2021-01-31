@@ -75,12 +75,7 @@ class Post(Base):
     post_image = StdImageField(
         'Imagem do Post',
         blank=True,
-        upload_to=get_file_path,
-        variations={'thumb': {
-            'width': 350,
-            'height': 200,
-            'crop': True
-        }})
+        upload_to=get_file_path,)
     audio_post = models.FileField('Áudio do Post', blank=True,
                                   upload_to=get_file_path,
                                   validators=[validate_audio_extension])
@@ -99,8 +94,10 @@ class Post(Base):
 
 @receiver(pre_save, sender=Post)
 def pre_save_post(signal, instance, sender, **kwargs):
-    instance.slug = slugify(instance.titulo)
+    instance.slug = f'{slugify(instance.titulo)}-{instance.id}'
+    slug = instance.slug
+    url = f'http://127.0.0.1:8000/{slug}'
     # editar para o instance.slug para o link da postagem
-    instance.facebook_link = f'https://www.facebook.com/sharer.php?u={instance.slug}'
-    instance.twitter_link = f'https://twitter.com/intent/tweet?url={instance.slug}&text={instance.titulo}'
-    instance.linkedin_link = f'https://www.linkedin.com/shareArticle?mini=true&url={instance.slug}&title=&summary={instance.titulo}&source='
+    instance.facebook_link = f'https://www.facebook.com/sharer.php?u={url}'
+    instance.twitter_link = f'https://twitter.com/intent/tweet?url={url}&text={instance.titulo}'
+    instance.linkedin_link = f'https://www.linkedin.com/shareArticle?mini=true&url={url}&title=&summary={instance.titulo}&source='

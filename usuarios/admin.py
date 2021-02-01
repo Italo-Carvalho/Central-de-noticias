@@ -10,11 +10,11 @@ class CustomUsuarioAdmin(UserAdmin):
     add_form = CustomUsuarioCreateForm
     form = CustomUsuarioChangeForm
     model = CustomUsuario
-    list_display = ('username', 'first_name', 'last_name', 'is_staff')
+    list_display = ('username', 'first_name', 'is_staff')
 
     fieldsets = (
         ('Informações Pessoais', {
-            'fields': ('username', 'password', 'first_name', 'last_name', 'avatar')}),
+            'fields': ('username', 'password', 'first_name', 'avatar')}),
         ('Permissões', {'fields': ('is_active', 'is_staff',
                                    'is_superuser', 'groups')}),
     )

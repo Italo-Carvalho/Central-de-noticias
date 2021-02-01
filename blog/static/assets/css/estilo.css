@@ -4,6 +4,28 @@
     --font: #ffffff;
 }
 
+.fh5co_tagg {
+    margin-right: 8px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    display: inline-block;
+    padding: 10px 15px;
+    transition: all .5s ease;
+    text-decoration: none;
+    font-family: 'Poppins';
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.5;
+    box-sizing: inherit;
+    color: black;
+    background-color: #f1f1f1;
+}
+
+.fh5co_tagg:hover,
+.fh5co_tagg:focus {
+    background-color: #014c8c;
+
+}
 
 
 .imgLogo {

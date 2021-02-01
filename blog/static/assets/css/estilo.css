@@ -1,0 +1,103 @@
+:root {
+    --base: #08f;
+    --sticky: #fff;
+    --font: #ffffff;
+}
+
+
+
+.imgLogo {
+    max-width: 85%;
+}
+
+
+.imgLogoSticky {
+    max-width: 39%;
+}
+
+
+.imgLogoFooter {
+    max-width: 64%;
+}
+
+.header-area .header-bottom {
+    box-shadow: 0px 0px 36px 0px rgba(0, 0, 0, 0.1);
+    background: var(--base);
+}
+
+.header-area .header-bottom .header-social::before {
+    content: "";
+    width: 1px;
+    height: 101%;
+    background: var(--sticky);
+    position: absolute;
+    left: 0;
+    top: 0px;
+    bottom: 0;
+}
+
+.header-area .header-bottom .header-social::after {
+    content: "";
+    width: 1px;
+    height: 101%;
+    background: var(--sticky);
+    position: absolute;
+    right: 0;
+    top: 0px;
+    bottom: 0;
+}
+
+
+.main-header .nav-search::before {
+    content: "";
+    width: 1px;
+    height: 104%;
+    background: var(--sticky);
+    position: absolute;
+    right: 0px;
+    top: -1px;
+    bottom: 0;
+}
+
+#scrollUp {
+    background: var(--base);
+    height: 50px;
+    width: 50px;
+    right: 31px;
+    bottom: 18px;
+    color: #fff;
+    font-size: 20px;
+    text-align: center;
+    border-radius: 50%;
+    line-height: 48px;
+    border: 2px solid transparent;
+}
+
+.weekly3-news-area .weekly3-wrapper .dot-style .slick-active button {
+    background: var(--base);
+    height: 9px;
+    width: 38px;
+    border-radius: 10px;
+}
+
+.preloader .preloader-circle {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    border-style: solid;
+    border-width: 1px;
+    border-top-color: var(--base);
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+    border-right-color: transparent;
+    z-index: 10;
+    border-radius: 50%;
+    -webkit-box-shadow: 0 1px 5px 0 rgba(35, 181, 185, 0.15);
+    box-shadow: 0 1px 5px 0 rgba(35, 181, 185, 0.15);
+    background-color: #ffffff;
+    -webkit-animation: zoom 2000ms infinite ease;
+    animation: zoom 2000ms infinite ease;
+    -webkit-transition: .6s;
+    -o-transition: .6s;
+    transition: .6s;
+}

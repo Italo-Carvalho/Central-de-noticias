@@ -7,11 +7,11 @@ class IndexView(ListView):
     model = Post
     template_name = 'index.html'
     context_object_name = 'posts'
-    paginate_by = 1
-    queryset = Post.objects.all()
+    paginate_by = 8
+    queryset = Post.objects.all().order_by('-criados')
 
 
 class PostDetailView(DetailView):
     model = Post
-    template_name = 'detail.html'
+    template_name = 'post_detail.html'
     context_object_name = 'post'

@@ -4,7 +4,7 @@ from .models import Post, Categorias, Tags
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('_autor', 'titulo', 'ativo', 'modificado', 'slug')
+    list_display = ('_autor', 'titulo', 'ativo', 'modificado', 'categoria')
 
     exclude = ['autor', ]
 

@@ -41,7 +41,8 @@ class Base(models.Model):
 
 
 class Categorias(Base):
-    categoria = models.CharField('Categoria', max_length=30)
+    categoria = models.CharField('Categoria', max_length=30, unique=True)
+    slug = models.SlugField('Slug', blank=True, editable=False)
 
     class Meta:
         verbose_name = 'Categoria'
@@ -51,8 +52,15 @@ class Categorias(Base):
         return self.categoria
 
 
+@receiver(pre_save, sender=Categorias)
+def pre_save_categorias(signal, instance, sender, **kwargs):
+    instance.slug = slugify(instance.categoria)
+    slug = instance.slug
+
+
 class Tags(Base):
-    tag = models.CharField('Tag', max_length=30)
+    tag = models.CharField('Tag', max_length=30, unique=True)
+    slug = models.SlugField('Slug', blank=True, editable=False)
 
     class Meta:
         verbose_name = 'Tag'
@@ -60,6 +68,12 @@ class Tags(Base):
 
     def __str__(self):
         return self.tag
+
+
+@receiver(pre_save, sender=Tags)
+def pre_save_Tags(signal, instance, sender, **kwargs):
+    instance.slug = slugify(instance.tag)
+    slug = instance.slug
 
 
 class Post(Base):
@@ -70,16 +84,15 @@ class Post(Base):
         Categorias, verbose_name='Categoria', on_delete=models.CASCADE)
     tags = models.ManyToManyField(Tags, blank=True)
     titulo = models.CharField('Titulo', max_length=100)
-    sub_titulo = models.CharField('Subtítulo', blank=True, max_length=100)
+    sub_titulo = models.CharField('Subtítulo', max_length=100)
     texto = models.TextField()
     post_image = StdImageField(
         'Imagem do Post',
-        blank=True,
         upload_to=get_file_path,)
     audio_post = models.FileField('Áudio do Post', blank=True,
                                   upload_to=get_file_path,
                                   validators=[validate_audio_extension])
-    slug = models.SlugField('Slug', max_length=100, blank=True, editable=False)
+    slug = models.SlugField('Slug', blank=True, editable=False)
     facebook_link = models.URLField(blank=True, editable=False)
     twitter_link = models.URLField(blank=True, editable=False)
     linkedin_link = models.URLField(blank=True, editable=False)

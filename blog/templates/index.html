@@ -167,7 +167,7 @@
                     <div class="clearfix"></div>
                     <div class="fh5co_tags_all">
                     {% for c in  categorias %}
-                        <a href="#" class="fh5co_tagg">{{c.categoria}}</a>
+                        <a href="{% url 'categoria' c.slug %}" class="fh5co_tagg">{{c.categoria}}</a>
                     {% endfor %}
                     </div>
                     <div>
@@ -180,7 +180,7 @@
                             <img src="{{post.post_image.url}}" alt="{{post.titulo}}" style="height: 60px;width: 100%;vertical-align: middle;border-style: none;box-sizing: inherit;" class="fh5co_most_trading" />
                         </div>
                         <div class="col-7 paddding">
-                            <div style="font-family: 'Poppins';font-size: 14px;font-weight: normal;line-height: 1.5;color: #292b2c;box-sizing: inherit;" class="most_fh5co_treding_font">{{post.titulo}}</div>
+                            <div style="font-family: 'Poppins';font-size: 14px;font-weight: normal;line-height: 1.5;color: #292b2c;box-sizing: inherit;" class="most_fh5co_treding_font"><a href="{% url 'detail' post.slug %}" style="color:black;">{{post.titulo}}</a></div>
                             <div class="most_fh5co_treding_font_123">{{post.criados|date:"d M, Y"}}</div>
                         </div>
                     </div>

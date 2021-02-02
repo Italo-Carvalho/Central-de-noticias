@@ -81,7 +81,7 @@
                      <!-- Logo -->
                      <div class="col-xl-3 col-lg-3 col-md-3 d-none d-md-block">
                            <div class="logo">
-                              <a href="index.html"><img src="{% static 'assets/img/logo/logo.png' %} " style="width: 350px;" alt=""></a>
+                              <a href="{% url 'Index' %}"><img src="{% static 'assets/img/logo/logo.png' %} " style="width: 350px;" alt=""></a>
                            </div>
                      </div>
                      <div class="col-xl-9 col-lg-9 col-md-9">
@@ -98,18 +98,24 @@
                         <div class="col-xl-8 col-lg-8 col-md-12 header-flex">
                            <!-- sticky -->
                            <div class="sticky-logo">
-                              <a href="index.html"><img src="{% static 'assets/img/logo/logo.png' %} " alt="" style="width:150px"></a>
+                              <a href="{% url 'Index' %}"><img src="{% static 'assets/img/logo/logo.png' %} " alt="" style="width:150px"></a>
                            </div>
                            <!-- Main-menu -->
                            <div class="main-menu d-none d-md-block">
                               <nav>                  
                                  <ul id="navigation">
-                                       <li><a href="index.html">Central de notícias</a></li>
-                                       <li><a href="about.html">Matérias em Áudio</a></li>
-                                       <li><a href="#">Brasil</a></li>
-                                         
-                                            <li><a href="categori.html">Maranhão</a></li>
-                                             <li><a href="blog.html">Política</a></li>
+                                       <li><a href="{% url 'Index' %}">Central de notícias</a></li>
+                                       <li><a href="{% url 'tag' 'audio' %}">Matérias em Áudio</a></li>
+
+                                            <li><a href="{% url 'tag' 'brasil' %}">Brasil</a>
+                                                <ul class="submenu">
+                                                    <li><a href="{% url 'tag' 'politica' %}">Política</a></li>
+                                                </ul>
+                                            </li>
+                                                    <li><a href="{% url 'tag' 'maranhao' %}">Maranhão</a></li>                                           
+
+                                            
+                                             
                                       
                                        
                                  </ul>
@@ -221,8 +227,8 @@
   <div class="search-model-box">
     <div class="d-flex align-items-center h-100 justify-content-center">
       <div class="search-close-btn">+</div>
-      <form class="search-model-form">
-        <input type="text" id="search-input" placeholder="Digite.....">
+      <form class="search-model-form" method="get" action="{% url 'search_results' %}">
+        <input name="q" type="text" id="search-input" placeholder="Digite.....">
       </form>
     </div>
   </div>
@@ -253,7 +259,6 @@
   <script src="{% static 'assets/js/jquery.sticky.js' %} "></script>
 
   <!-- contact js -->
-  <script src="{% static 'assets/js/contact.js' %} "></script>
   <script src="{% static 'assets/js/jquery.form.js' %} "></script>
   <script src="{% static 'assets/js/jquery.validate.min.js' %} "></script>
   <script src="{% static 'assets/js/mail-script.js' %} "></script>
@@ -274,6 +279,8 @@
     <script src="{% static 'js/jquery.waypoints.min.js' %} "></script>
     <script src="{% static 'js/main.js' %}"></script>
 
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v9.0" nonce="Dq69WdrT"></script>
     <!-- Waypoints -->
 </body>
 

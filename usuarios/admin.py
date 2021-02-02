@@ -14,7 +14,7 @@ class CustomUsuarioAdmin(UserAdmin):
 
     fieldsets = (
         ('Informações Pessoais', {
-            'fields': ('username', 'password', 'first_name', 'avatar')}),
+            'fields': ('username', 'password', 'first_name', "bio", 'avatar')}),
         ('Permissões', {'fields': ('is_active', 'is_staff',
                                    'is_superuser', 'groups')}),
     )

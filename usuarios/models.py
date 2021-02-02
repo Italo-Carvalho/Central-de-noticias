@@ -43,8 +43,9 @@ class CustomUsuario(AbstractUser):
         'Foto de perfil',
         blank=True,
         upload_to=get_file_path,)
+    bio = models.CharField('bio', max_length=100, blank=True)
     is_staff = models.BooleanField("Membro da equipe", default=True)
-    REQUIRED_FIELDS = ["first_name", "last_name"]
+    REQUIRED_FIELDS = ["first_name"]
 
     def __str__(self):
         return self.first_name

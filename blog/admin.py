@@ -1,10 +1,16 @@
 from django.contrib import admin
 from .models import Post, Categorias, Tags
+from tinymce.widgets import TinyMCE
+from django.db import models
 
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
     list_display = ('_autor', 'titulo', 'ativo', 'modificado', 'categoria')
+
+    formfield_overrides = {
+        models.TextField: {'widget': TinyMCE(mce_attrs={'width': None})},
+    }
 
     exclude = ['autor', ]
 

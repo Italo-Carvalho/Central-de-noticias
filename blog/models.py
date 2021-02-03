@@ -95,7 +95,6 @@ class Post(Base):
     slug = models.SlugField('Slug', blank=True, editable=False)
     facebook_link = models.URLField(blank=True, editable=False)
     twitter_link = models.URLField(blank=True, editable=False)
-    linkedin_link = models.URLField(blank=True, editable=False)
 
     class Meta:
         verbose_name = 'Post'
@@ -104,13 +103,14 @@ class Post(Base):
     def __str__(self):
         return self.titulo
 
+#!Atenção ao criar 2 posts com o mesmo titulo usando o ("salvar e adicionar outro(a)") o instance.id retorna o valor None causando bug's
+
 
 @receiver(pre_save, sender=Post)
 def pre_save_post(signal, instance, sender, **kwargs):
     instance.slug = f'{slugify(instance.titulo)}-{instance.id}'
     slug = instance.slug
-    url = f'http://127.0.0.1:8000/{slug}'
+    url = f'http://127.0.0.1:8000/noticias/{slug}'
     # editar para o instance.slug para o link da postagem
     instance.facebook_link = f'https://www.facebook.com/sharer.php?u={url}'
     instance.twitter_link = f'https://twitter.com/intent/tweet?url={url}&text={instance.titulo}'
-    instance.linkedin_link = f'https://www.linkedin.com/shareArticle?mini=true&url={url}&title=&summary={instance.titulo}&source='

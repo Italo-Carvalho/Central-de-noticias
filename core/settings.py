@@ -153,6 +153,7 @@ AUTH_USER_MODEL = 'usuarios.CustomUsuario'
 JAZZMIN_SETTINGS = {
     "site_logo": "logo.png",
     "site_title": "Blog Admin",
+    "user_avatar": False,
     "site_header": "Blog",
     "welcome_sign": "Bem vindo ao Painel do Blog",
     "copyright": "SeuMVP",

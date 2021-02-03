@@ -1,0 +1,206 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+  <main>
+
+    <!--   Weekly3-News start -->
+    <div class="weekly3-news-area pt-80 pb-130">
+      <div class="container">
+        <div class="weekly3-wrapper">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="slider-wrapper">
+                <!-- Slider -->
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div class="weekly3-news-active dot-style d-flex">
+
+                    
+                {% for post in posts %}
+                {% if post.ativo == True %}
+                      <div class="weekly3-single">
+                        <div class="weekly3-img">
+                          <img src="{{post.post_image.url}}" alt="{{post.titulo}}" style="max-height: 165px;">
+                        </div>
+                        <div class="weekly3-caption">
+                          <h4><a href="{% url 'detail' post.slug %}">{{post.titulo}}</a></h4>
+                          <p>{{post.criados|date:"d M, Y"}}</p>
+                        </div>
+                      </div>
+                  {% endif %}
+                {% endfor %}
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Weekly-News -->
+
+
+    <!-- Trending Area Start -->
+    <div class="trending-area fix pt-25 gray-bg">
+      <div class="container">
+        <div class="trending-main">
+          <div class="row">
+            <div class="col-lg-8">
+              <!-- Trending Top -->
+              <div class="slider-active">
+                <!-- Single -->
+                {% for post in posts|slice:":3" %}
+                {% if post.ativo == True %}
+                <div class="single-slider">
+                  <div class="trending-top mb-30">
+                    <div class="trend-top-img">
+                      <img src="{{post.post_image.url}}" alt="{{post.titulo}}">
+                      <div class="trend-top-cap">
+                        <span class="bgr" data-animation="fadeInUp" data-delay=".2s" data-duration="1000ms">{{post.categoria}}</span>
+                        <h2><a href="{% url 'detail' post.slug %}" data-animation="fadeInUp" data-delay=".4s" data-duration="1000ms">{{post.titulo}}</a></h2>
+                        <p data-animation="fadeInUp" data-delay=".6s" data-duration="1000ms">Por
+                          {{post.autor}} - {{post.criados|date:"d M, Y"}}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+              </div>
+            </div>
+            <!-- Right content -->
+            <div class="col-lg-4">
+              <!-- Trending Top -->
+              {% for post in posts|slice:"3:4" %}
+              {% if post.ativo == True %}
+              <div class="row">
+                <div class="col-lg-12 col-md-6 col-sm-6">
+                  <div class="trending-top mb-30">
+                    <div class="trend-top-img">
+                      <img src="{{post.post_image.url}}" alt="{{post.titulo}}">
+                      <div class="trend-top-cap trend-top-cap2">
+                        <span class="bgb">{{post.categoria}}</span>
+                        <h2><a href="{% url 'detail' post.slug %}">{{post.titulo}}</a></h2>
+                        <p>Por
+                          {{post.autor}} - {{post.criados|date:"d M, Y"}}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+
+              {% for post in posts|slice:"4:5" %}
+              {% if post.ativo == True %}
+                <div class="col-lg-12 col-md-6 col-sm-6">
+                  <div class="trending-top mb-30">
+                    <div class="trend-top-img">
+                      <img src="{{post.post_image.url}}" alt="{{post.titulo}}">
+                      <div class="trend-top-cap trend-top-cap2">
+                        <span class="bgg">{{post.categoria}}</span>
+                        <h2><a href="{% url 'detail' post.slug %}">{{post.titulo}}</a></h2>
+                        <p>Por
+                          {{post.autor}} - {{post.criados|date:"d M, Y"}}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Trending Area End -->
+
+
+
+
+    <div class="container-fluid pb-4 pt-4 paddding">
+        <div class="container paddding">
+            <div class="row mx-0">
+                <div class="col-md-8 animate-box" data-animate-effect="fadeInLeft">
+                    <div>
+                        <div class="fh5co_heading fh5co_heading_border_bottom py-2 mb-4" style="    border-bottom: 1px solid #777;
+    font-size: 24px;
+    color: #222;
+    padding-top: 0.5rem !important;
+    font-family: 'Poppins';
+    padding-bottom: 0.5rem !important;">Notícias Novas</div>
+                    </div>
+
+                {% for post in posts%}
+                {% if post.ativo == True %}
+                    <div class="row pb-4">
+                        <div class="col-md-5">
+                            <div class="fh5co_hover_news_img">
+                                <div class="fh5co_news_img" style="    overflow: hidden;
+    position: relative;
+    top: 0;
+    height: 200px;"><img src="{{post.post_image.url}}" alt=""  style="border-style: none;
+    height: 260px;
+    min-width: 100%;"/></div>
+                                <div></div>
+                            </div>
+                        </div>
+                        <div class="col-md-7 animate-box">
+                            <a href="{% url 'detail' post.slug %}" class="fh5co_magna py-2" style="color:black;font-size: 16px;color: #222 !important;font-weight: 800;">{{post.titulo}}</a>
+                                <br>
+
+                            <div class="fh5co_consectetur" style="font-size: 14px;color: #777;font-weight: normal;line-height: 1.5;">{{post.sub_titulo}}</div>
+                                                            <a href="{% url 'detail' post.slug %}" class="fh5co_mini_time py-3" style="color:black;font-size: 14px;"> {{post.autor}} - {{post.criados|date:"d M, Y"}}</a>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %} 
+                </div>
+
+                
+                <div class="col-md-3 animate-box" style="overflow-wrap: break-word;" data-animate-effect="fadeInRight">
+                    <div>
+                        <div class="fh5co_heading fh5co_heading_border_bottom py-2 mb-4" style="border-bottom: 1px solid #777;font-size: 24px;color: #222;padding-top: 0.5rem !important;font-family: 'Poppins';padding-bottom: 0.5rem !important;">Categorias</div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="fh5co_tags_all">
+                    {% for c in  categorias %}
+                        <a href="{% url 'categoria' c.slug %}" class="fh5co_tagg">{{c.categoria}}</a>
+                    {% endfor %}
+                    </div>
+                    <div>
+                        <div class="fh5co_heading fh5co_heading_border_bottom pt-3 py-2 mb-4" style="border-bottom: 1px solid #777;font-size: 24px;color: #222;padding-top: 0.5rem !important;font-family: 'Poppins';padding-bottom: 0.5rem !important;">Mais popular</div>
+                    </div>
+
+                    {% for post in posts|slice:":5" %}
+                    <div class="row pb-3">
+                        <div class="col-5 align-self-center">
+                            <img src="{{post.post_image.url}}" alt="{{post.titulo}}" style="height: 60px;width: 100%;vertical-align: middle;border-style: none;box-sizing: inherit;" class="fh5co_most_trading" />
+                        </div>
+                        <div class="col-7 paddding">
+                            <div style="font-family: 'Poppins';font-size: 14px;font-weight: normal;line-height: 1.5;color: #292b2c;box-sizing: inherit;" class="most_fh5co_treding_font"><a href="{% url 'detail' post.slug %}" style="color:black;">{{post.titulo}}</a></div>
+                            <div class="most_fh5co_treding_font_123">{{post.criados|date:"d M, Y"}}</div>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+            
+            <div class="row mx-0 animate-box" data-animate-effect="fadeInUp">
+                <div class="col-12 text-center pb-4 pt-4">
+                    <a href="#" class="btn_mange_pagging"><i class="fa fa-long-arrow-left"></i>&nbsp;&nbsp; Previous</a>
+                    <a href="#" class="btn_pagging">1</a>
+                    <a href="#" class="btn_pagging">2</a>
+                    <a href="#" class="btn_pagging">3</a>
+                    <a href="#" class="btn_pagging">...</a>
+                    <a href="#" class="btn_mange_pagging">Next <i class="fa fa-long-arrow-right"></i>&nbsp;&nbsp; </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock%}

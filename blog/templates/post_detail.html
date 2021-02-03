@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<main>
+   <!--================Blog Area =================-->
+   <section class="blog_area single-post-area section-padding">
+      <div class="container">
+         <div class="row">
+            <div class="col-lg-8 posts-list">
+               <div class="single-post">
+                  <div class="feature-img">
+                     <img class="img-fluid" src="{{post.post_image.url}}" alt="{{post.titulo}}">
+                  </div>
+                  <div class="blog_details">
+                     <h2>{{post.titulo}}</h2>
+                     <ul class="blog-info-link mt-3 mb-4">
+                        <li><a href="#"><i class="fa fa-user"></i> {{post.autor}}</a></li>
+                     </ul>
+                     <p class="excert" style="overflow-wrap: break-word;font-weight: bold;">{{post.sub_titulo}}</p>
+                     <p class="excert" style="overflow-wrap: break-word;">{{post.texto}}</p>
+                  </div>
+                  {% if post.audio_post %}
+                     <p>Escute a matéria em áudio:</p>
+                     <audio controls>
+                     <source src="{{post.audio_post.url }}" type="audio/ogg">
+                     <source src="{{post.audio_post.url }}" type="audio/mpeg">
+                     Seu Navegador não suporta elemento de áudio
+                     </audio>
+                  {% endif %}
+               </div>
+
+               <div class="blog-author" style="overflow-wrap: anywhere;">
+                  <div class="media align-items-center">
+                     <img src="{{post.autor.avatar.url}}" alt="">
+                     <div class="media-body">
+                        <a href="#">
+                           <h4>{{post.autor}}</h4>
+                        </a>
+                        {% if post.autor.bio %}
+                        <p>{{post.autor.bio}}</p>
+                        {% endif %}
+                     </div>
+                  </div>
+               </div>
+               <div class="comments-area">
+
+
+                  <div class="comment-list">
+                     <div class="single-comment justify-content-between d-flex">
+                        <div class="user justify-content-between d-flex">
+                           <div class="thumb">
+                              
+                           </div>
+                           <div class="desc">
+                           <div class="fb-comments" data-href="http://127.0.0.1:8000/{{post.titulo}}/{{post.slug}}" data-width="" data-numposts="5"></div>
+
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+
+            </div>
+            <div class="col-lg-4">
+               <div class="blog_right_sidebar">
+
+                  <aside class="single_sidebar_widget tag_cloud_widget">
+                     <h4 class="widget_title">Tag's</h4>
+                     <ul class="list">
+                       {% for tag in post.tags.all %}
+                        <li>
+                           <a href="{% url 'tag' tag.slug %}">{{tag}}</a>
+                        </li>
+                        {% endfor %}
+                     </ul>
+                  </aside>
+
+                  <aside class="single_sidebar_widget post_category_widget" style="overflow-wrap">
+                     <h4 class="widget_title">Categorias</h4>
+                     <ul class="list cat-list">
+                     {% for c in categorias %}
+                        <li>
+                           <a href="{% url 'categoria' c.slug %}"  class="d-flex">
+                              <p>{{c.categoria}}</p>
+                           </a>
+                        </li>
+                     {% endfor %}
+                     </ul>
+                  </aside>
+
+
+
+
+
+                  <aside class="single_sidebar_widget popular_post_widget" style="    overflow-wrap: anywhere;">
+                     <h3 class="widget_title">Notícias recentes</h3>
+
+                     {% for post in posts %}
+                     <div class="media post_item">
+                        <img src="{{post.post_image.url}}" alt="{{post.titulo}}" style="width:80px;height: 80px;">
+                        <div class="media-body">
+                           <a href="{% url 'detail' post.slug %}">
+                              <h3>{{post.titulo}}</h3>
+                           </a>
+                           <p>{{post.criados|date:"d M, Y"}}9</p>
+                        </div>
+                     </div>
+                     {% endfor %}
+
+
+
+                  </aside>
+
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+   <!--================ Blog Area end =================-->
+</main>
+<!-- Search model end -->
+{% endblock content %}

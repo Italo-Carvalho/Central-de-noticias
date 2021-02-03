@@ -1,0 +1,287 @@
+{% load static %}
+<!doctype html>
+<html class="no-js" lang="zxx">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Central de Notícias</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" type="image/x-icon" href="{% static 'assets/img/favicon.ico' %} ">
+
+
+  <!-- CSS here -->
+  <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/css/owl.carousel.min.css' %} ">
+  <link rel="stylesheet" href="{% static 'assets/css/ticker-style.css' %} ">
+  <link rel="stylesheet" href="{% static 'assets/css/flaticon.css' %} ">
+  <link rel="stylesheet" href="{% static 'assets/css/slicknav.css' %} ">
+  <link rel="stylesheet" href="{% static 'assets/css/animate.min.css' %} ">
+  <link rel="stylesheet" href="{% static 'assets/css/magnific-popup.css' %} ">
+  <link rel="stylesheet" href="{% static 'assets/css/fontawesome-all.min.css' %} ">
+  <link rel="stylesheet" href="{% static 'assets/css/themify-icons.css' %} ">
+  <link rel="stylesheet" href="{% static 'assets/css/slick.css' %} ">
+  <link rel="stylesheet" href="{% static 'assets/css/nice-select.css' %} ">
+  <link rel="stylesheet" href="{% static 'assets/css/style.css' %} ">
+  <link rel="stylesheet" href="{% static 'assets/css/estilo.css' %} ">
+
+      <link href="{% static 'css/owl.theme.default.css' %} " rel="stylesheet" type="text/css" />
+    <!-- Bootstrap CSS -->
+    
+    <!-- Modernizr JS -->
+    <script src="{% static 'js/modernizr-3.5.0.min.js' %} "></script>
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+    <link href="{% static 'css/media_query.css' %} " rel="stylesheet" type="text/css" />
+
+</head>
+<body>
+<!-- Preloader Start -->
+<div id="preloader-active">
+   <div class="preloader d-flex align-items-center justify-content-center">
+         <div class="preloader-inner position-relative">
+            <div class="preloader-circle"></div>
+            <div class="preloader-img pere-text">
+               <img src="{% static 'assets/img/logo/logo.png' %} " alt="">
+            </div>
+         </div>
+   </div>
+</div>
+<!-- Preloader Start -->
+<header>
+   <!-- Header Start -->
+   <div class="header-area">
+         <div class="main-header ">
+            <div class="header-top black-bg d-none d-sm-block">
+               <div class="container">
+                  <div class="col-xl-12">
+                     <div class="row d-flex justify-content-between align-items-center">
+                           <div class="header-info-left">
+                              <ul>     
+                                 <li class="title"><span class="flaticon-energy"></span> Agora!</li>
+                                 {% for post in posts|slice:":1" %}
+                                 <li>{{post.titulo}}</li>
+                                 {% endfor %}
+                              </ul>
+                           </div>
+                           <div class="header-info-right">
+                              <ul class="header-date">
+                                 <li><span class="flaticon-calendar"></span>{% now "SHORT_DATETIME_FORMAT" %}</li>
+                              </ul>
+                           </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="header-mid gray-bg">
+               <div class="container">
+                  <div class="row d-flex align-items-center">
+                     <!-- Logo -->
+                     <div class="col-xl-3 col-lg-3 col-md-3 d-none d-md-block">
+                           <div class="logo">
+                              <a href="{% url 'Index' %}"><img src="{% static 'assets/img/logo/logo.png' %} " style="width: 350px;" alt=""></a>
+                           </div>
+                     </div>
+                     <div class="col-xl-9 col-lg-9 col-md-9">
+                           <div class="header-banner f-right ">
+                              <img src="{% static 'assets/img/gallery/header_card.png' %} " alt="">
+                           </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="header-bottom header-sticky">
+                  <div class="container">
+                     <div class="row align-items-center">
+                        <div class="col-xl-8 col-lg-8 col-md-12 header-flex">
+                           <!-- sticky -->
+                           <div class="sticky-logo">
+                              <a href="{% url 'Index' %}"><img src="{% static 'assets/img/logo/logo.png' %} " alt="" style="width:150px"></a>
+                           </div>
+                           <!-- Main-menu -->
+                           <div class="main-menu d-none d-md-block">
+                              <nav>                  
+                                 <ul id="navigation">
+                                       <li><a href="{% url 'Index' %}">Central de notícias</a></li>
+                                       <li><a href="{% url 'tag' 'audio' %}">Matérias em Áudio</a></li>
+
+                                            <li><a href="{% url 'tag' 'brasil' %}">Brasil</a>
+                                                <ul class="submenu">
+                                                    <li><a href="{% url 'tag' 'politica' %}">Política</a></li>
+                                                </ul>
+                                            </li>
+                                                    <li><a href="{% url 'tag' 'maranhao' %}">Maranhão</a></li>                                           
+
+                                            
+                                             
+                                      
+                                       
+                                 </ul>
+                              </nav>
+                           </div>
+                        </div>             
+                        <div class="col-xl-4 col-lg-4 col-md-4">
+                           <div class="header-right f-right d-none d-lg-block">
+                              <!-- Heder social -->
+                              <ul class="header-social">    
+                                 <li><a href="https://www.fb.com/sai4ull"><i class="fab fa-facebook-f"></i></a></li>
+                                 <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                 <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                                 <li> <a href="#"><i class="fab fa-youtube"></i></a></li>
+                              </ul>
+                              <!-- Search Nav -->
+                              <div class="nav-search search-switch">
+                                 <i class="fa fa-search"></i>
+                              </div>
+                           </div>
+                        </div>
+                        <!-- Mobile Menu -->
+                        <div class="col-12">
+                           <div class="mobile_menu d-block d-md-none"></div>
+                        </div>
+                     </div>
+                  </div>
+            </div>
+         </div>
+   </div>
+   <!-- Header End -->
+</header>
+{% block content %}
+{% endblock content %}
+    <div class="banner-area white-bg pt-90 pb-90">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-10 col-md-10">
+            <div class="banner-one">
+              <img src="{% static 'assets/img/gallery/ban.png' %} " alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- banner-last End -->
+  </main>
+  <footer>
+    <!-- Footer Start-->
+    <div class="footer-main footer-bg">
+      <div class="footer-area footer-padding">
+        <div class="container">
+          <div class="row d-flex justify-content-between">
+            <div class="col-xl-3 col-lg-3 col-md-5 col-sm-8">
+              <div class="single-footer-caption mb-50">
+                <div class="single-footer-caption mb-30">
+                  <!-- logo -->
+                  <div class="footer-logo">
+                    <a href="index.html"><img class="imgLogoFooter" src="{% static 'assets/img/logo/central.png' %} " alt=""></a>
+                  </div>
+                  <div class="footer-tittle">
+                    <div class="footer-pera">
+                      <p class="info1">Lorem ipsum dolor sit amet, nsectetur adipiscing elit, sed
+                        do eiusmod tempor incididunt ut labore.</p>
+                      <p class="info2">198 West 21th Street, Suite 721 New York,NY 10010</p>
+                      <p class="info2">Phone: +95 (0) 123 456 789 Cell: +95 (0) 123 456 789</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-5 col-sm-7">
+              <div class="single-footer-caption mb-50">
+                <div class="footer-tittle">
+                  <h4>Postes populares</h4>
+                </div>
+
+                {% for post in posts|slice:":4" %}
+                <!-- Popular post -->
+                <div class="whats-right-single mb-20">
+                  <div class="whats-right-img">
+                    <img src="{{post.post_image.url}} " alt="{{post.titulo}}" style="width: 86px;height: 80px;">
+                  </div>
+                  <div class="whats-right-cap">
+                    <h4><a href="latest_news.html">{{post.titulo}}</a>
+                    </h4>
+                    <p> {{post.autor}} | {{post.criados|date:"d / M / Y"}}</p>
+                  </div>
+                </div>
+                {% endfor %}
+
+              </div>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-5 col-sm-7">
+              <div class="single-footer-caption mb-50">
+                <div class="banner">
+                  <img src="{% static 'assets/img/gallery/anuncie.png' %} " alt="">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- footer-bottom aera -->
+
+    <!-- Footer End-->
+  </footer>
+  <!-- Search model Begin -->
+  <div class="search-model-box">
+    <div class="d-flex align-items-center h-100 justify-content-center">
+      <div class="search-close-btn">+</div>
+      <form class="search-model-form" method="get" action="{% url 'search_results' %}">
+        <input name="q" type="text" id="search-input" placeholder="Digite.....">
+      </form>
+    </div>
+  </div>
+  <!-- Search model end -->
+  <!-- JS here -->
+
+  <script src="{% static 'assets/js/vendor/modernizr-3.5.0.min.js' %} "></script>
+  <!-- Jquery, Popper, Bootstrap -->
+  <script src="{% static 'assets/js/vendor/jquery-1.12.4.min.js' %} "></script>
+  <script src="{% static 'assets/js/popper.min.js' %} "></script>
+  <script src="{% static 'assets/js/bootstrap.min.js' %} "></script>
+  <!-- Jquery Mobile Menu -->
+  <script src="{% static 'assets/js/jquery.slicknav.min.js' %} "></script>
+
+  <!-- Jquery Slick , Owl-Carousel Plugins -->
+  <script src="{% static 'assets/js/owl.carousel.min.js' %} "></script>
+  <script src="{% static 'assets/js/slick.min.js' %} "></script>
+  <!-- Date Picker -->
+  <script src="{% static 'assets/js/gijgo.min.js' %} "></script>
+  <!-- One Page, Animated-HeadLin -->
+  <script src="{% static 'assets/js/wow.min.js' %} "></script>
+  <script src="{% static 'assets/js/animated.headline.js' %}"></script>
+  <script src="{% static 'assets/js/jquery.magnific-popup.js' %} "></script>
+
+  <!-- Scrollup, nice-select, sticky -->
+  <script src="{% static 'assets/js/jquery.scrollUp.min.js' %} "></script>
+  <script src="{% static 'assets/js/jquery.nice-select.min.js' %} "></script>
+  <script src="{% static 'assets/js/jquery.sticky.js' %} "></script>
+
+  <!-- contact js -->
+  <script src="{% static 'assets/js/jquery.form.js' %} "></script>
+  <script src="{% static 'assets/js/jquery.validate.min.js' %} "></script>
+  <script src="{% static 'assets/js/mail-script.js' %} "></script>
+  <script src="{% static 'assets/js/jquery.ajaxchimp.min.js' %} "></script>
+
+  <!-- Jquery Plugins, main Jquery -->
+  <script src="{% static 'assets/js/plugins.js' %} "></script>
+  <script src="{% static 'assets/js/main.js' %} "></script>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+
+
+    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'js/jquery.waypoints.min.js' %} "></script>
+    <script src="{% static 'js/main.js' %}"></script>
+
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v9.0" nonce="Dq69WdrT"></script>
+    <!-- Waypoints -->
+</body>
+
+</html>

@@ -24,7 +24,7 @@
                         </div>
                         <div class="weekly3-caption">
                           <h4><a href="{% url 'detail' post.slug %}">{{post.titulo}}</a></h4>
-                          <p>{{post.criados|date:"d M, Y"}}</p>
+                          <p>{{post.criados|timesince}} atrás</p>
                         </div>
                       </div>
                   {% endif %}
@@ -152,7 +152,7 @@
                                 <br>
 
                             <div class="fh5co_consectetur" style="font-size: 14px;color: #777;font-weight: normal;line-height: 1.5;">{{post.sub_titulo}}</div>
-                                                            <a href="{% url 'detail' post.slug %}" class="fh5co_mini_time py-3" style="color:black;font-size: 14px;"> {{post.autor}} - {{post.criados|date:"d M, Y"}}</a>
+                                                            <a href="{% url 'detail' post.slug %}" class="fh5co_mini_time py-3" style="color:black;font-size: 14px;">{{post.criados|timesince}} atrás</a>
                         </div>
                     </div>
                     {% endif %}

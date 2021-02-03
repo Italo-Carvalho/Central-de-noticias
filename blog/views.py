@@ -2,6 +2,8 @@ from django.shortcuts import render
 from .models import Post, Tags, Categorias
 from django.views.generic import ListView, DetailView, TemplateView
 from django.db.models import Q
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.shortcuts import get_object_or_404
 
 
 class IndexView(TemplateView):
@@ -15,17 +17,23 @@ class IndexView(TemplateView):
         return context
 
 
-class CategoriaView(DetailView):
-    model = Categorias
-    template_name = 'categoria.html'
-    context_object_name = 'categoria'
+def CategoriaDetail(request, slug):
+    categoria = get_object_or_404(Categorias, slug=slug)
+    post_list = Post.objects.filter(categoria=categoria)
+    page = request.GET.get('page', 2)
 
-    def get_context_data(self, **kwargs):
-        context = super(CategoriaView, self).get_context_data(**kwargs)
-        context['posts'] = Post.objects.all().order_by('-criados')[:6]
-        context['categorias'] = Categorias.objects.all().order_by(
-            '-criados')[:10]
-        return context
+    paginator = Paginator(post_list, 2)
+    try:
+        post = paginator.page(page)
+    except PageNotAnInteger:
+        post = paginator.page(1)
+    except EmptyPage:
+        post = paginator.page(paginator.num_pages)
+    context = {
+        'categoria': categoria,
+        'posts': post,
+    }
+    return render(request, 'categoria.html', context)
 
 
 class TagsView(DetailView):

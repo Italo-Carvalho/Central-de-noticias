@@ -41,11 +41,13 @@
                                         <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">       
                                             <div class="row">
 
-                                              {% for post in posts %}
+                                              {% for post in post_categoria %}
                                                 <div class="col-xl-6 col-lg-6 col-md-6">
                                                     <div class="whats-news-single mb-40 mb-40">
                                                         <div class="whates-img">
+                                                        <a href="{% url 'detail' post.slug %}">
                                                             <img src="{{post.post_image.url}}" alt="{{post.titulo}}">
+                                                            </a>
                                                         </div>
                                                         <div class="whates-caption whates-caption2">
                                                             <h4><a href="{% url 'detail' post.slug %}">{{post.titulo}}</a></h4>
@@ -67,46 +69,78 @@
                                 </div>
                             </div>
                     </div>
-                    {% include 'paginador.html' %}
+                    <style>
+
+
+.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+.pagination a.active {
+  background-color: #4CAF50;
+  color: white;
+  border-radius: 5px;
+}
+
+.pagination a:hover:not(.active) {
+  background-color: #ddd;
+  border-radius: 5px;
+}
+</style>
+<ul class="pagination d-flex justify-content-center" style="margin-top:20px;  margin-bottom: 20px;">
+{% if post_categoria.has_previous %}
+    <li><a style="color:black;" href="?page={{ post_categoria.previous_page_number }}"><i class="fa fa-chevron-left" aria-hidden="true"></i></a></li>
+{% else %}
+    <li class="disabled"><span><a><i class="fa fa-chevron-left" aria-hidden="true"></a></i></span></li>
+{% endif %}
+
+{% if post_categoria.number|add:'-4' > 1 %}
+    <li><a style="color:black;" href="?page={{ post_categoria.number|add:'-5' }}">&hellip;</a></li>
+{% endif %}
+
+{% for i in post_categoria.paginator.page_range %}
+    {% if post_categoria.number == i %}
+        <li class="active" style="background-color: #08f;color: white;padding: 8px 16px;border-radius: 5px;"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+    {% elif i > post_categoria.number|add:'-5' and i < post_categoria.number|add:'5' %}
+        <li><a style="color:black;" href="?page={{ i }}">{{ i }}</a></li>
+    {% endif %}
+{% endfor %}
+
+{% if post_categoria.paginator.num_pages > post_categoria.number|add:'4' %}
+    <li><a style="color:black;" href="?page={{ post_categoria.number|add:'5' }}">&hellip;</a></li>
+{% endif %}
+
+{% if post_categoria.has_next %}
+    <li><a style="color:black;" href="?page={{ post_categoria.next_page_number }}"><i class="fa fa-chevron-right" aria-hidden="true"></i></a></li>
+{% else %}
+    <li class="disabled"><span><a><i class="fa fa-chevron-right" aria-hidden="true"></i></span></a></li>
+{% endif %}
+
+</ul>
                     </div>
                     <div class="col-lg-4">
                         <!-- Flow Socail -->
                         <div class="single-follow mb-45">
                             <div class="single-box">
-                                <div class="follow-us d-flex align-items-center">
+                                <div class="follow-us d-flex align-items-center" style="overflow-wrap: anywhere;">
                                     <div class="follow-social">
                                         <a href="#"><img src="{% static 'assets/img/news/icon-fb.png' %} " alt=""></a>
                                     </div>
                                     <div class="follow-count">  
-                                        <span>8,045</span>
-                                        <p>Fans</p>
+                                        <p>Curta nossa página</p>
                                     </div>
                                 </div> 
-                                <div class="follow-us d-flex align-items-center">
-                                    <div class="follow-social">
-                                        <a href="#"><img src="{% static 'assets/img/news/icon-tw.png' %} " alt=""></a>
-                                    </div>
-                                    <div class="follow-count">
-                                        <span>8,045</span>
-                                        <p>Fans</p>
-                                    </div>
-                                </div>
-                                    <div class="follow-us d-flex align-items-center">
-                                    <div class="follow-social">
-                                        <a href="#"><img src="{% static 'assets/img/news/icon-ins.png' %} " alt=""></a>
-                                    </div>
-                                    <div class="follow-count">
-                                        <span>8,045</span>
-                                        <p>Fans</p>
-                                    </div>
-                                </div>
-                                <div class="follow-us d-flex align-items-center">
+
+
+                                <div class="follow-us d-flex align-items-center" style="overflow-wrap: anywhere;">
                                     <div class="follow-social">
                                         <a href="#"><img src="{% static 'assets/img/news/icon-yo.png' %}" alt=""></a>
                                     </div>
-                                    <div class="follow-count">
-                                        <span>8,045</span>
-                                        <p>Fans</p>
+                                    <div class="follow-count">  
+                                        <p>Se inscreva no canal</p>
                                     </div>
                                 </div>
                             </div>

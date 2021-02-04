@@ -47,8 +47,7 @@ TINYMCE_DEFAULT_CONFIG = {
     'toolbar1': '''
             fullscreen preview bold italic underline | fontselect,
             fontsizeselect  | forecolor backcolor | alignleft alignright |
-            aligncenter alignjustify | indent outdent | bullist numlist table |
-            | link image media | codesample |
+            aligncenter alignjustify | indent outdent | link image media | codesample |
             ''',
     'toolbar2': '''
             visualblocks visualchars |
@@ -152,11 +151,11 @@ AUTH_USER_MODEL = 'usuarios.CustomUsuario'
 
 JAZZMIN_SETTINGS = {
     "site_logo": "logo.png",
-    "site_title": "Blog Admin",
+    "site_title": "Central  de Notícias Admin",
     "user_avatar": False,
-    "site_header": "Blog",
-    "welcome_sign": "Bem vindo ao Painel do Blog",
-    "copyright": "SeuMVP",
+    "site_header": "Central  de Notícias",
+    "welcome_sign": "Bem vindo ao Painel da Central  de Notícias",
+    "copyright": "Central  de Notícias",
     "show_ui_builder": False,
 }
 JAZZMIN_UI_TWEAKS = {

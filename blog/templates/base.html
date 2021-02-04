@@ -37,7 +37,18 @@
     <link href="{% static 'css/media_query.css' %} " rel="stylesheet" type="text/css" />
 
 </head>
+
 <body>
+
+<style>
+img {
+  transition: transform .2s; /* Animation */
+}
+
+img:hover {
+  transform: scale(1.05); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
+</style>
 <!-- Preloader Start -->
 <div id="preloader-active">
    <div class="preloader d-flex align-items-center justify-content-center">
@@ -62,7 +73,7 @@
                               <ul>     
                                  <li class="title"><span class="flaticon-energy"></span> Agora!</li>
                                  {% for post in posts|slice:":1" %}
-                                 <li>{{post.titulo}}</li>
+                                 <li><a href="{% url 'detail' post.slug %}">{{post.titulo}}<a></li>
                                  {% endfor %}
                               </ul>
                            </div>
@@ -75,6 +86,7 @@
                   </div>
                </div>
             </div>
+            
             <div class="header-mid gray-bg">
                <div class="container">
                   <div class="row d-flex align-items-center">
@@ -190,14 +202,16 @@
             <div class="col-xl-4 col-lg-4 col-md-5 col-sm-7">
               <div class="single-footer-caption mb-50">
                 <div class="footer-tittle">
-                  <h4>Postes populares</h4>
+                  <h4>Ultimas notícias</h4>
                 </div>
 
                 {% for post in posts|slice:":4" %}
                 <!-- Popular post -->
                 <div class="whats-right-single mb-20">
                   <div class="whats-right-img">
+                  <a href="{% url 'detail' post.slug %}">
                     <img src="{{post.post_image.url}} " alt="{{post.titulo}}" style="width: 86px;height: 80px;">
+                    </a>
                   </div>
                   <div class="whats-right-cap">
                     <h4><a href="latest_news.html">{{post.titulo}}</a>
@@ -227,7 +241,7 @@
   <div class="search-model-box">
     <div class="d-flex align-items-center h-100 justify-content-center">
       <div class="search-close-btn">+</div>
-      <form class="search-model-form" method="get" action="{% url 'search_results' %}">
+      <form class="search-model-form" method="get" action="{% url 'search_results' %}?page=1">
         <input name="q" type="text" id="search-input" placeholder="Digite.....">
       </form>
     </div>

@@ -9,7 +9,7 @@ from django.contrib.auth import get_user_model
 from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.template.defaultfilters import slugify
-from django.db.models.signals import pre_save
+from django.db.models.signals import pre_save, post_save
 from django.dispatch import receiver
 
 # gerar nome unico para cada arquivo enviado
@@ -103,12 +103,13 @@ class Post(Base):
     def __str__(self):
         return self.titulo
 
+
 #!Atenção ao criar 2 posts com o mesmo titulo usando o ("salvar e adicionar outro(a)") o instance.id retorna o valor None causando bug's
 
 
 @receiver(pre_save, sender=Post)
-def pre_save_post(signal, instance, sender, **kwargs):
-    instance.slug = f'{slugify(instance.titulo)}-{instance.id}'
+def post_save_post(signal, instance, sender, **kwargs):
+    instance.slug = f'{slugify(instance.titulo)}-{instance.categoria}-{instance.id}'
     slug = instance.slug
     url = f'http://127.0.0.1:8000/noticias/{slug}'
     # editar para o instance.slug para o link da postagem

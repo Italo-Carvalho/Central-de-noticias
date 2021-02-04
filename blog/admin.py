@@ -8,6 +8,7 @@ from django.db import models
 class PostAdmin(admin.ModelAdmin):
     list_display = ('_autor', 'titulo', 'ativo', 'modificado', 'categoria')
 
+    filter_horizontal = ('tags',)
     formfield_overrides = {
         models.TextField: {'widget': TinyMCE(mce_attrs={'width': None})},
     }
@@ -26,6 +27,7 @@ class PostAdmin(admin.ModelAdmin):
     def save_model(self, request, obj, form, change):
         obj.autor = request.user
         super().save_model(request, obj, form, change)
+
 
 
 @admin.register(Categorias)

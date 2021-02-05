@@ -14,7 +14,7 @@
                   <div class="blog_details">
                      <h2>{{post.titulo}}</h2>
                      <ul class="blog-info-link mt-3 mb-4">
-                        <li><a href="#"><i class="fa fa-user"></i> {{post.autor}}</a></li>
+                        <li><a href="#"><i class="fa fa-user"></i> {{post.autor}} {{post.autor.last_name}}</a></li>
                      </ul>
                      <p class="excert" style="overflow-wrap: break-word;font-weight: bold;">{{post.sub_titulo}}</p>
                      <style>
@@ -41,7 +41,7 @@
                      <img src="{{post.autor.avatar.url}}" alt="">
                      <div class="media-body">
                         <a href="#">
-                           <h4>{{post.autor}}</h4>
+                           <h4>{{post.autor}} {{post.autor.last_name}}</h4>
                         </a>
                         {% if post.autor.bio %}
                         <p>{{post.autor.bio}}</p>

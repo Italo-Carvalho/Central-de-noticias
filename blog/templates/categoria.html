@@ -51,7 +51,7 @@
                                                         </div>
                                                         <div class="whates-caption whates-caption2">
                                                             <h4><a href="{% url 'detail' post.slug %}">{{post.titulo}}</a></h4>
-                                                            <span>Por {{post.autor}} | {{post.criados|date:"d M, Y"}}</span>
+                                                            <span>Por {{post.autor}} {{post.autor.last_name}} | {{post.criados|date:"d M, Y"}}</span>
                                                             <p>{{post.sub_titulo}}</p>
                                                         </div>
                                                     </div>

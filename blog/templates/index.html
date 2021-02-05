@@ -61,7 +61,7 @@
                         <span class="bgr" data-animation="fadeInUp" data-delay=".2s" data-duration="1000ms">{{post.categoria}}</span>
                         <h2><a href="{% url 'detail' post.slug %}" data-animation="fadeInUp" data-delay=".4s" data-duration="1000ms">{{post.titulo}}</a></h2>
                         <p data-animation="fadeInUp" data-delay=".6s" data-duration="1000ms">Por
-                          {{post.autor}} - {{post.criados|date:"d M, Y"}}</p>
+                          {{post.autor}} {{post.autor.last_name}} - {{post.criados|date:"d M, Y"}}</p>
                       </div>
                     </div>
                   </div>
@@ -84,7 +84,7 @@
                         <span class="bgb">{{post.categoria}}</span>
                         <h2><a href="{% url 'detail' post.slug %}">{{post.titulo}}</a></h2>
                         <p>Por
-                          {{post.autor}} - {{post.criados|date:"d M, Y"}}</p>
+                          {{post.autor}} {{post.autor.last_name}} - {{post.criados|date:"d M, Y"}}</p>
                       </div>
                     </div>
                   </div>
@@ -102,7 +102,7 @@
                         <span class="bgg">{{post.categoria}}</span>
                         <h2><a href="{% url 'detail' post.slug %}">{{post.titulo}}</a></h2>
                         <p>Por
-                          {{post.autor}} - {{post.criados|date:"d M, Y"}}</p>
+                          {{post.autor}} {{post.autor.last_name}} - {{post.criados|date:"d M, Y"}}</p>
                       </div>
                     </div>
                   </div>

@@ -58,7 +58,7 @@ TINYMCE_DEFAULT_CONFIG = {
     'statusbar': True,
 }
 
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
+CRISPY_TEMPLATE_PACK = 'uni_form'
 
 
 MIDDLEWARE = [
@@ -152,7 +152,6 @@ AUTH_USER_MODEL = 'usuarios.CustomUsuario'
 JAZZMIN_SETTINGS = {
     "site_logo": "logo.png",
     "site_title": "Central  de Notícias Admin",
-    "user_avatar": False,
     "site_header": "Central  de Notícias",
     "welcome_sign": "Bem vindo ao Painel da Central  de Notícias",
     "copyright": "Central  de Notícias",

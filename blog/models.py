@@ -4,6 +4,8 @@ from usuarios.models import CustomUsuario
 # Create your models here.
 import os
 import uuid
+import string
+import random
 from stdimage.models import StdImageField
 from django.contrib.auth import get_user_model
 from django.conf import settings
@@ -104,12 +106,11 @@ class Post(Base):
         return self.titulo
 
 
-#!Atenção ao criar 2 posts com o mesmo titulo usando o ("salvar e adicionar outro(a)") o instance.id retorna o valor None causando bug's
-
-
 @receiver(pre_save, sender=Post)
 def post_save_post(signal, instance, sender, **kwargs):
-    instance.slug = f'{slugify(instance.titulo)}-{instance.categoria}-{instance.id}'
+    randomid = ''.join(random.choice(
+        string.ascii_uppercase + string.digits) for _ in range(12))
+    instance.slug = f'{slugify(instance.titulo)}-{randomid}'
     slug = instance.slug
     url = f'http://127.0.0.1:8000/noticias/{slug}'
     # editar para o instance.slug para o link da postagem

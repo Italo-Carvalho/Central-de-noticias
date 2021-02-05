@@ -39,7 +39,9 @@
 </head>
 
 <body>
-
+{% if user.is_authenticated %}
+<div class="user-log" style="height: 30px;background-color:black;"><p style="color:white;">Bem vindo! {{ user.get_username }}, <a style="color:#08f" href="/admin">crie um post.</a> <a href="/admin/logout/?next=/">  <i class="fas fa-sign-out-alt"></i></a></p></div>
+{% endif %}
 <style>
 img {
   transition: transform .2s; /* Animation */
@@ -216,7 +218,7 @@ img:hover {
                   <div class="whats-right-cap">
                     <h4><a href="latest_news.html">{{post.titulo}}</a>
                     </h4>
-                    <p> {{post.autor}} | {{post.criados|date:"d / M / Y"}}</p>
+                    <p> {{post.autor}} {{post.autor.last_name}} | {{post.criados|date:"d / M / Y"}}</p>
                   </div>
                 </div>
                 {% endfor %}

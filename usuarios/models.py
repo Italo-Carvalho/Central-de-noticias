@@ -41,11 +41,10 @@ def get_file_path(_instace, filename):
 class CustomUsuario(AbstractUser):
     avatar = StdImageField(
         'Foto de perfil',
-        blank=True,
         upload_to=get_file_path,)
-    bio = models.CharField('bio', max_length=100, blank=True)
+    bio = models.TextField('bio', max_length=150, )
     is_staff = models.BooleanField("Membro da equipe", default=True)
-    REQUIRED_FIELDS = ["first_name"]
+    REQUIRED_FIELDS = ["first_name", "last_name", "avatar", "bio", ]
 
     def __str__(self):
         return self.first_name

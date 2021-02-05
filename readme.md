@@ -1,3 +1,6 @@
+**O redator podera se cadastrar em http://sua_url/cadastro**
+
+
 **Grupo obrigatorio do redator**
 ****
 *O redator só conseguirá olhar, editar e os seus próprios posts*
@@ -13,4 +16,3 @@
 
 ![image](./.github/tags.jpg)
 
-**O redator podera se cadastrar em http://sua_url/cadastro**

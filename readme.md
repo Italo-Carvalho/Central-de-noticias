@@ -13,3 +13,4 @@
 
 ![image](./.github/tags.jpg)
 
+**O redator podera se cadastrar em http://sua_url/cadastro**

@@ -3,7 +3,7 @@
 
 **Grupo obrigatorio do redator**
 ****
-*O redator só conseguirá olhar, editar e os seus próprios posts*
+*O redator só conseguirá olhar e editar os seus próprios posts*
 
 ![image](./.github/criarcategoria.jpg)
 

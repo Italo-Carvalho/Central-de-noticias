@@ -4,10 +4,6 @@ from django import forms
 
 
 class CustomUsuarioCreateForm(UserCreationForm):
-    first_name = forms.CharField(
-        max_length=30, required=True, label='Primeiro nome')
-    last_name = forms.CharField(
-        max_length=30, required=True, label='Último nome')
 
     class Meta:
         model = CustomUsuario

@@ -10,11 +10,18 @@ class CustomUsuarioAdmin(UserAdmin):
     add_form = CustomUsuarioCreateForm
     form = CustomUsuarioChangeForm
     model = CustomUsuario
-    list_display = ('username', 'first_name', 'is_staff')
+    list_display = ('username', 'first_name', 'criado', 'get_groups')
+
+    def get_groups(self, obj):
+        return obj.groups.values_list('name', flat=True).get(pk=1)
+
+    get_groups.short_description = 'Groupos'
 
     fieldsets = (
-        ('Informações Pessoais', {
-            'fields': ('username', 'password', 'first_name', "last_name", "bio", 'avatar')}),
-        ('Permissões', {'fields': ('is_active', 'is_staff',
-                                   'is_superuser', 'groups')}),
+        (None, {
+            'fields': ('username', 'password', 'first_name', "last_name", "bio", 'avatar',
+                       'is_active', 'is_staff', 'is_superuser', 'groups',
+
+                       )}),
+
     )

@@ -156,8 +156,17 @@ JAZZMIN_SETTINGS = {
     "welcome_sign": "Bem vindo ao Painel da Central  de Notícias",
     "copyright": "Central  de Notícias",
     "show_ui_builder": False,
+    "icons": {
+        "auth.group": "fas fa-users",
+        "blog.Post": "fas fa-scroll",
+        "blog.Categorias": "far fa-list-alt",
+        "blog.Tags": "fas fa-tags",
+        "usuarios.CustomUsuario": "fas fa-user",
+    },
+
 }
 JAZZMIN_UI_TWEAKS = {
     "theme": "simplex",
     "navbar": "navbar-gray-dark navbar-dark",
+
 }

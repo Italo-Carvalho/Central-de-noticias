@@ -40,7 +40,7 @@
 
 <body>
 {% if user.is_authenticated %}
-<div class="user-log" style="height: 30px;background-color:black;"><p style="color:white;">Bem vindo! {{ user.get_username }}, <a style="color:#08f" href="/admin">crie um post.</a> <a href="/admin/logout/?next=/">  <i class="fas fa-sign-out-alt"></i></a></p></div>
+<div class="user-log" style="height: 30px;background-color:#1d1d1d;"><p style="color:white;">Bem vindo! {{ user.get_username }}, <a style="color:#08f" href="/admin">crie um post.</a> <a href="/admin/logout/?next=/">  <i class="fas fa-sign-out-alt"></i></a></p></div>
 {% endif %}
 <style>
 img {

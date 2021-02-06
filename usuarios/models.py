@@ -43,6 +43,7 @@ class CustomUsuario(AbstractUser):
         'Foto de perfil',
         upload_to=get_file_path,)
     bio = models.TextField('bio', max_length=150, )
+    criado = models.DateTimeField('Criação', auto_now_add=True)
     is_staff = models.BooleanField("Membro da equipe", default=True)
     REQUIRED_FIELDS = ["first_name", "last_name", "avatar", "bio", ]
 

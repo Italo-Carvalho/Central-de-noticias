@@ -28,7 +28,9 @@ INSTALLED_APPS = [
     'usuarios',
     'crispy_forms',
     'tinymce',
+
 ]
+INSTALLED_APPS += ('django_summernote', )
 
 TINYMCE_DEFAULT_CONFIG = {
     'height': 360,
@@ -140,10 +142,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
+X_FRAME_OPTIONS = 'SAMEORIGIN'
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 
 AUTH_USER_MODEL = 'usuarios.CustomUsuario'

@@ -1,17 +1,15 @@
 from django.contrib import admin
 from .models import Post, Categorias, Tags
-from tinymce.widgets import TinyMCE
+from django_summernote.admin import SummernoteModelAdmin
 from django.db import models
 
 
 @admin.register(Post)
-class PostAdmin(admin.ModelAdmin):
+class PostAdmin(SummernoteModelAdmin):
     list_display = ('_autor', 'titulo', 'ativo', 'modificado', 'categoria')
 
     filter_horizontal = ('tags',)
-    formfield_overrides = {
-        models.TextField: {'widget': TinyMCE(mce_attrs={'width': None})},
-    }
+    summernote_fields = ('texto',)
 
     exclude = ['autor', ]
 
@@ -27,7 +25,6 @@ class PostAdmin(admin.ModelAdmin):
     def save_model(self, request, obj, form, change):
         obj.autor = request.user
         super().save_model(request, obj, form, change)
-
 
 
 @admin.register(Categorias)

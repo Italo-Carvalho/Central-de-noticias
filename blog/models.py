@@ -4,12 +4,14 @@ from usuarios.models import CustomUsuario
 # Create your models here.
 import os
 import uuid
+import string
+import random
 from stdimage.models import StdImageField
 from django.contrib.auth import get_user_model
 from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.template.defaultfilters import slugify
-from django.db.models.signals import pre_save
+from django.db.models.signals import pre_save, post_save
 from django.dispatch import receiver
 
 # gerar nome unico para cada arquivo enviado
@@ -95,7 +97,6 @@ class Post(Base):
     slug = models.SlugField('Slug', blank=True, editable=False)
     facebook_link = models.URLField(blank=True, editable=False)
     twitter_link = models.URLField(blank=True, editable=False)
-    linkedin_link = models.URLField(blank=True, editable=False)
 
     class Meta:
         verbose_name = 'Post'
@@ -106,11 +107,12 @@ class Post(Base):
 
 
 @receiver(pre_save, sender=Post)
-def pre_save_post(signal, instance, sender, **kwargs):
-    instance.slug = f'{slugify(instance.titulo)}-{instance.id}'
+def post_save_post(signal, instance, sender, **kwargs):
+    randomid = ''.join(random.choice(
+        string.ascii_uppercase + string.digits) for _ in range(12))
+    instance.slug = f'{slugify(instance.titulo)}-{randomid}'
     slug = instance.slug
-    url = f'http://127.0.0.1:8000/{slug}'
+    url = f'http://127.0.0.1:8000/noticias/{slug}'
     # editar para o instance.slug para o link da postagem
     instance.facebook_link = f'https://www.facebook.com/sharer.php?u={url}'
     instance.twitter_link = f'https://twitter.com/intent/tweet?url={url}&text={instance.titulo}'
-    instance.linkedin_link = f'https://www.linkedin.com/shareArticle?mini=true&url={url}&title=&summary={instance.titulo}&source='

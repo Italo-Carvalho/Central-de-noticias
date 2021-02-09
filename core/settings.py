@@ -23,11 +23,42 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes', 'django.contrib.sessions',
     'django.contrib.messages', 'django.contrib.staticfiles',
 
+    'bootstrap_pagination',
     'blog',
     'usuarios',
     'crispy_forms',
+    'tinymce',
 ]
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+TINYMCE_DEFAULT_CONFIG = {
+    'height': 360,
+    'width': 1120,
+    'cleanup_on_startup': True,
+    'custom_undo_redo_levels': 20,
+    'selector': 'textarea',
+    'theme': 'modern',
+    'plugins': '''
+            textcolor save link image media preview codesample contextmenu
+            table code lists fullscreen  insertdatetime  nonbreaking
+            contextmenu directionality searchreplace wordcount visualblocks
+            visualchars code fullscreen autolink lists  charmap print  hr
+            anchor pagebreak
+            ''',
+    'toolbar1': '''
+            fullscreen preview bold italic underline | fontselect,
+            fontsizeselect  | forecolor backcolor | alignleft alignright |
+            aligncenter alignjustify | indent outdent | link image media | codesample |
+            ''',
+    'toolbar2': '''
+            visualblocks visualchars |
+            charmap hr pagebreak nonbreaking anchor |  code |
+            ''',
+    'contextmenu': 'formats | link image',
+    'menubar': True,
+    'statusbar': True,
+}
+
+CRISPY_TEMPLATE_PACK = 'uni_form'
 
 
 MIDDLEWARE = [
@@ -57,6 +88,7 @@ TEMPLATES = [
         },
     },
 ]
+
 
 WSGI_APPLICATION = 'core.wsgi.application'
 
@@ -119,14 +151,22 @@ AUTH_USER_MODEL = 'usuarios.CustomUsuario'
 
 JAZZMIN_SETTINGS = {
     "site_logo": "logo.png",
-    "user_avatar": False,
-    "site_title": "Blog Admin",
-    "site_header": "Blog",
-    "welcome_sign": "Bem vindo ao Painel do Blog",
-    "copyright": "SeuMVP",
+    "site_title": "Central  de Notícias Admin",
+    "site_header": "Central  de Notícias",
+    "welcome_sign": "Bem vindo ao Painel da Central  de Notícias",
+    "copyright": "Central  de Notícias",
     "show_ui_builder": False,
+    "icons": {
+        "auth.group": "fas fa-users",
+        "blog.Post": "fas fa-scroll",
+        "blog.Categorias": "far fa-list-alt",
+        "blog.Tags": "fas fa-tags",
+        "usuarios.CustomUsuario": "fas fa-user",
+    },
+
 }
 JAZZMIN_UI_TWEAKS = {
     "theme": "simplex",
     "navbar": "navbar-gray-dark navbar-dark",
+
 }

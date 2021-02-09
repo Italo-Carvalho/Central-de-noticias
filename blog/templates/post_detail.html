@@ -6,7 +6,7 @@
    <section class="blog_area single-post-area section-padding">
       <div class="container">
          <div class="row">
-            <div class="col-lg-8 posts-list">
+            <div class="col-lg-8 posts-list" style="overflow-wrap: break-word;    contain: content;">
                <div class="single-post">
                   <div class="feature-img">
                      <img class="img-fluid" src="{{post.post_image.url}}" alt="{{post.titulo}}">
@@ -14,10 +14,15 @@
                   <div class="blog_details">
                      <h2>{{post.titulo}}</h2>
                      <ul class="blog-info-link mt-3 mb-4">
-                        <li><a href="#"><i class="fa fa-user"></i> {{post.autor}}</a></li>
+                        <li><a href="#"><i class="fa fa-user"></i> {{post.autor}} {{post.autor.last_name}}</a></li>
                      </ul>
                      <p class="excert" style="overflow-wrap: break-word;font-weight: bold;">{{post.sub_titulo}}</p>
-                     <p class="excert" style="overflow-wrap: break-word;">{{post.texto}}</p>
+                     <style>
+                     span, p {
+                        color:black;
+                     }
+                     </style>
+                     <div style="color:black;">{{post.texto|safe}}</div>
                   </div>
                   {% if post.audio_post %}
                      <p>Escute a matéria em áudio:</p>
@@ -28,13 +33,15 @@
                      </audio>
                   {% endif %}
                </div>
-
-               <div class="blog-author" style="overflow-wrap: anywhere;">
+               <p>Compartilhe:</p>
+               <a href="{{post.facebook_link}}" target="_blank" class="fa fa-facebook" style="padding: 15px 0;font-size: 20px;width: 50px;text-align: center;text-decoration: none;margin: 5px 2px;background: #3B5998;color: white;"></a>
+               <a href="{{post.twitter_link}}" target="_blank" class="fa fa-twitter" style="padding: 15px 0;font-size: 20px;width: 50px;text-align: center;text-decoration: none;margin: 5px 2px;background: #55ACEE;color: white;"></a>
+               <div class="blog-author" style="overflow-wrap: anywhere; contain: content;">
                   <div class="media align-items-center">
                      <img src="{{post.autor.avatar.url}}" alt="">
                      <div class="media-body">
                         <a href="#">
-                           <h4>{{post.autor}}</h4>
+                           <h4>{{post.autor}} {{post.autor.last_name}}</h4>
                         </a>
                         {% if post.autor.bio %}
                         <p>{{post.autor.bio}}</p>
@@ -80,7 +87,7 @@
                      <ul class="list cat-list">
                      {% for c in categorias %}
                         <li>
-                           <a href="{% url 'categoria' c.slug %}"  class="d-flex">
+                           <a href="{% url 'categoria' c.slug %}?page=1"  class="d-flex">
                               <p>{{c.categoria}}</p>
                            </a>
                         </li>
@@ -97,7 +104,9 @@
 
                      {% for post in posts %}
                      <div class="media post_item">
+                     <a href="{% url 'detail' post.slug %}">
                         <img src="{{post.post_image.url}}" alt="{{post.titulo}}" style="width:80px;height: 80px;">
+                        </a>
                         <div class="media-body">
                            <a href="{% url 'detail' post.slug %}">
                               <h3>{{post.titulo}}</h3>
